@@ -1,0 +1,95 @@
+INSERT INTO data_diri_alumni (nama_lengkap, alamat, tempat_lahir, tanggal_lahir, jenis_kelamin, jurusan, nomor_induk_siswa_sekolah, nomor_induk_siswa_nasional, tahun_lulus) VALUES 
+('John Doe', '123 Jalan Merdeka', 'Jakarta', '1995-05-15', 'laki-laki', 'IPA', '12345', 'ID12345', 2013), 
+('Jane Smith', '456 Jalan Raya', 'Surabaya', '1997-09-20', 'perempuan', 'IPS', '67890', 'ID67890', 2015),
+('David Johnson', '789 Jalan Utama', 'Bandung', '1994-02-10', 'laki-laki', 'BAHASA', '13579', 'ID13579', 2012),
+('Maria Garcia', '321 Jalan Baru', 'Yogyakarta', '1996-11-25', 'perempuan', 'IPA', '24680', 'ID24680', 2014),
+('Ahmad Abdullah', '555 Jalan Indah', 'Medan', '1998-08-30', 'laki-laki', 'IPS', '98765', 'ID98765', 2016),
+('Siti Nurjanah', '777 Jalan Berseri', 'Semarang', '1993-07-05', 'perempuan', 'BAHASA', '11111', 'ID11111', 2011),
+('Andi Wijaya', '999 Jalan Ceria', 'Makassar', '1999-12-12', 'laki-laki', 'IPS', '54321', 'ID54321', 2017),
+('Lina Susanto', '888 Jalan Sentosa', 'Palembang', '1992-04-18', 'perempuan', 'BAHASA', '22222', 'ID22222', 2010),
+('Eko Prabowo', '666 Jalan Makmur', 'Solo', '1991-10-08', 'laki-laki', 'IPA', '99999', 'ID99999', 2009),
+('Rina Cahaya', '444 Jalan Bahagia', 'Balikpapan', '1990-03-28', 'perempuan', 'IPS', '77777', 'ID77777', 2008);
+
+INSERT INTO jenis_pekerjaan (id, nama_pekerjaan) VALUES 
+(1, 'Guru'), 
+(2, 'Dokter'), 
+(3, 'Insinyur'),
+(4, 'Akuntan'),
+(5, 'Desainer'),
+(6, 'Pengusaha'),
+(7, 'Programmer'),
+(8, 'Arsitek'),
+(9, 'Penulis'),
+(10, 'Pilot');
+
+INSERT INTO riwayat_prestasi_alumni (nomor_induk_siswa_sekolah, tingkat_prestasi, predikat_prestasi, nama_lomba, tanggal_lomba_mulai, tanggal_lomba_selesai) VALUES 
+('12345', 'kecamatan', 'juara 1', 'Lomba Matematika', '2023-01-10', '2023-01-15'), 
+('67890', 'kabupaten', 'juara 2', 'Lomba Bahasa Indonesia', '2022-05-20', '2022-05-25'),
+('13579', 'provinsi', 'juara 3', 'Olimpiade Fisika', '2021-11-12', '2021-11-17'),
+('24680', 'nasional', 'juara harapan', 'Lomba Seni Lukis', '2020-07-05', '2020-07-10'),
+('98765', 'internasional', 'peserta', 'Olimpiade Biologi', '2019-12-28', '2020-01-02'),
+('11111', 'kecamatan', 'juara 1', 'Lomba Debat', '2018-04-15', '2018-04-20'),
+('54321', 'kabupaten', 'juara 2', 'Lomba Tari Tradisional', '2017-10-30', '2017-11-04'),
+('22222', 'provinsi', 'juara 3', 'Olimpiade Kimia', '2016-03-12', '2016-03-17'),
+('99999', 'nasional', 'juara harapan', 'Lomba Fotografi', '2015-09-25', '2015-09-30'),
+('77777', 'internasional', 'peserta', 'Olimpiade Astronomi', '2014-01-08', '2014-01-13');
+
+INSERT INTO riwayat_kegiatan_organisasi (id, nama_kegiatan, tanggal_mulai_kegiatan, tanggal_berakhir_kegiatan, nama_organisasi) VALUES 
+(1, 'OSIS SMA', '2012-08-15', '2014-05-20', 'SMA Negeri 1'), 
+(2, 'PMR', '2013-04-10', '2015-02-28', 'SMA Negeri 2'),
+(3, 'MPK', '2011-10-05', '2013-09-15', 'SMA Negeri 3'),
+(4, 'UKS', '2014-12-25', '2016-08-30', 'SMA Negeri 4'),
+(5, 'Pramuka', '2010-07-30', '2012-04-18', 'SMA Negeri 5'),
+(6, 'KIR', '2015-03-12', '2017-10-22', 'SMA Negeri 6'),
+(7, 'Rohis', '2016-09-18', '2019-12-05', 'SMA Negeri 7'),
+(8, 'PKS', '2009-05-01', '2011-11-30', 'SMA Negeri 8'),
+(9, 'Paskibra', '2017-11-10', '2020-06-15', 'SMA Negeri 9'),
+(10, 'MPM', '2008-01-20', '2010-10-08', 'SMA Negeri 10');
+
+INSERT INTO riwayat_organisasi_alumni (nomor_induk_siswa_sekolah, id_kegiatan_organisasi, peran_di_kegiatan) VALUES 
+('12345', 1, 'Ketua Pelaksana'), 
+('67890', 2, 'Sekretaris'),
+('13579', 3, 'Bendahara'),
+('24680', 4, 'Anggota'),
+('98765', 5, 'Ketua Bidang'),
+('11111', 6, 'Anggota'),
+('54321', 7, 'Ketua Umum'),
+('22222', 8, 'Bendahara'),
+('99999', 9, 'Sekretaris'),
+('77777', 10, 'Anggota');
+
+INSERT INTO reuni_alumni (id_reuni, tanggal_reuni, lokasi_reuni, nomor_induk_siswa_sekolah_alumni_yang_ikut) VALUES 
+(1, '2023-06-20', 'Gedung Serbaguna', '12345'), 
+(2, '2023-08-15', 'Taman Kota', '67890'),
+(3, '2022-12-25', 'Hotel Megah', '13579'),
+(4, '2022-09-10', 'Pantai Indah', '24680'),
+(5, '2021-11-05', 'Aula Universitas', '98765'),
+(6, '2021-04-30', 'Pasar Malam', '11111'),
+(7, '2020-08-18', 'Kantor Pos', '54321'),
+(8, '2020-02-14', 'Cafe Ceria', '22222'),
+(9, '2019-07-01', 'Kolam Renang', '99999'),
+(10, '2018-10-22', 'Bioskop Tertawa', '77777');
+
+INSERT INTO sekolah_tinggi_alumni (nomor_induk_siswa_sekolah, jenjang_pendidikan, nama_sekolah_tinggi, dalam_atau_luar_negeri, nama_program_studi, tahun_masuk, tahun_ekspektasi_lulus) VALUES 
+('12345', 'S1', 'Universitas ABC', 'dalam negeri', 'Teknik Informatika', 2015, 2019),
+('67890', 'S2', 'Universitas XYZ', 'luar negeri', 'Computer Science', 2017, 2020),
+('24680', 'D4', 'Institut 123', 'dalam negeri', 'Manajemen Bisnis', 2018, 2022),
+('54321', 'D3', 'Politeknik 456', 'dalam negeri', 'Teknik Elektro', 2016, 2019),
+('13579', 'S1', 'Universitas DEF', 'luar negeri', 'Economics', 2019, 2023),
+('98765', 'S3', 'Institut 789', 'dalam negeri', 'Biotechnology', 2014, 2021),
+('11111', 'S1', 'Universitas GHI', 'luar negeri', 'Psychology', 2017, 2021),
+('22222', 'S2', 'Universitas JKL', 'dalam negeri', 'Architecture', 2015, 2018),
+('99999', 'S1', 'Universitas MNO', 'luar negeri', 'Medicine', 2016, 2022),
+('77777', 'S3', 'Institut PQR', 'dalam negeri', 'Information Systems', 2018, 2024);
+
+INSERT INTO pekerjaan_alumni (nomor_induk_siswa_sekolah, nama_pekerjaan, id_jenis_pekerjaan, jabatan_pekerjaan, tempat_bekerja, tanggal_mulai_bekerja) VALUES 
+('12345', 'Guru', 1, 'Kepala Sekolah', 'SMA Negeri 1', '2023-01-02'), 
+('67890', 'Dokter', 2, 'Spesialis Bedah', 'RS Pusat', '2022-04-15'),
+('13579', 'Insinyur', 3, 'Project Manager', 'PT Maju Mundur', '2021-10-28'),
+('24680', 'Akuntan', 4, 'Pembukuan', 'Kantor Akuntan Bersama', '2020-03-10'),
+('98765', 'Desainer', 5, 'Art Director', 'Studio Kreatif', '2019-07-20'),
+('11111', 'Pengusaha', 6, 'Owner', 'Warung Makmur', '2018-12-05'),
+('54321', 'Programmer', 7, 'Software Engineer', 'Tech Solutions', '2017-06-18'),
+('22222', 'Arsitek', 8, 'Proyek Manager', 'Arsitek Bersatu', '2016-01-30'),
+('99999', 'Penulis', 9, 'Editor', 'Penerbit Cerdas', '2015-05-12'),
+('77777', 'Pilot', 10, 'Pilot Garuda', 'Garuda Indonesia', '2014-09-25');

@@ -1,0 +1,9 @@
+DELIMITER //
+CREATE FUNCTION ambil_alamat_dari_nomor_induk_sekolah(nomor_induk VARCHAR(10))
+RETURNS VARCHAR(100)
+BEGIN
+    DECLARE alamat_alumni VARCHAR(100);
+    SELECT alamat INTO alamat_alumni FROM data_diri_alumni WHERE nomor_induk_siswa_sekolah = nomor_induk;
+    RETURN alamat_alumni;
+END//
+DELIMITER ;

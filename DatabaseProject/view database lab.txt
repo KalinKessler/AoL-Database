@@ -1,0 +1,83 @@
+CREATE VIEW lihat_alumni_yang_sedang_bekerja AS
+SELECT dda.nomor_induk_siswa_sekolah as 'NISK',
+	dda.nama_lengkap as 'Nama Lengkap',
+    pa.nama_pekerjaan as 'Nama Pekerjaan',
+    jp.nama_pekerjaan as 'Jenis Pekerjaan',
+    pa.jabatan_pekerjaan as 'Jabatan Pekerjaan',
+    pa.tempat_bekerja as 'Tempat Bekerja',
+    pa.tanggal_mulai_bekerja as 'Tanggal Mulai Kerja'
+FROM data_diri_alumni as dda JOIN pekerjaan_alumni as pa 
+	ON dda.nomor_induk_siswa_sekolah = pa.nomor_induk_siswa_sekolah
+JOIN jenis_pekerjaan as jp 
+	ON pa.id_jenis_pekerjaan = jp.id;
+
+CREATE VIEW lihat_alumni_yang_sedang_kuliah AS
+SELECT dda.nomor_induk_siswa_sekolah as 'NISK',
+	dda.nama_lengkap as 'Nama Lengkap',
+   	sta.jenjang_pendidikan as 'Jenjang Pendidikan',
+    sta.nama_program_studi as 'Program Studi',
+    sta.tahun_masuk as 'Tahun Masuk'
+FROM data_diri_alumni as dda
+JOIN sekolah_tinggi_alumni as sta
+ON dda.nomor_induk_siswa_sekolah = sta.nomor_induk_siswa_sekolah;
+
+CREATE VIEW lihat_data_diri_alumni_yang_ikut_reuni_terakhir_kali AS
+SELECT ra.id_reuni as 'ID Reuni',
+	ra.tanggal_reuni as 'Tanggal Reuni',
+    ra.lokasi_reuni as 'Lokasi Reuni',
+    ra.nomor_induk_siswa_sekolah_alumni_yang_ikut as 'NISK yang Ikut',
+    dda.nama_lengkap as 'Nama Lengkap'
+FROM reuni_alumni as ra JOIN 
+data_diri_alumni as dda 
+ON ra.nomor_induk_siswa_sekolah_alumni_yang_ikut = dda.nomor_induk_siswa_sekolah
+WHERE ra.tanggal_reuni = (SELECT MAX(tanggal_reuni) FROM reuni_alumni);
+
+CREATE VIEW lihat_data_diri_alumni_yang_berprestasi_kabupaten AS
+SELECT dda.nomor_induk_siswa_sekolah AS 'NISK',
+	dda.nama_lengkap AS 'Nama Lengkap',
+    rpa.nama_lomba AS 'Nama Lomba',
+    rpa.predikat_prestasi AS 'Predikat Prestasi',
+    rpa.tanggal_lomba_mulai AS'Tanggal Mulai',
+    rpa.tanggal_lomba_selesai AS 'Tanggal Selesai'
+FROM data_diri_alumni AS dda 
+JOIN riwayat_prestasi_alumni AS rpa
+ON dda.nomor_induk_siswa_sekolah = rpa.nomor_induk_siswa_sekolah
+WHERE lower(rpa.tingkat_prestasi) = 'kabupaten';
+
+CREATE VIEW lihat_data_diri_alumni_yang_berprestasi_provinsi AS
+SELECT dda.nomor_induk_siswa_sekolah AS 'NISK',
+	dda.nama_lengkap AS 'Nama Lengkap',
+    rpa.nama_lomba AS 'Nama Lomba',
+    rpa.predikat_prestasi AS 'Predikat Prestasi',
+    rpa.tanggal_lomba_mulai AS'Tanggal Mulai',
+    rpa.tanggal_lomba_selesai AS 'Tanggal Selesai'
+FROM data_diri_alumni AS dda 
+JOIN riwayat_prestasi_alumni AS rpa
+ON dda.nomor_induk_siswa_sekolah = rpa.nomor_induk_siswa_sekolah
+WHERE lower(rpa.tingkat_prestasi) = 'provinsi';
+
+CREATE VIEW lihat_data_diri_alumni_yang_berprestasi_nasional AS
+SELECT dda.nomor_induk_siswa_sekolah AS 'NISK',
+	dda.nama_lengkap AS 'Nama Lengkap',
+    rpa.nama_lomba AS 'Nama Lomba',
+    rpa.predikat_prestasi AS 'Predikat Prestasi',
+    rpa.tanggal_lomba_mulai AS'Tanggal Mulai',
+    rpa.tanggal_lomba_selesai AS 'Tanggal Selesai'
+FROM data_diri_alumni AS dda 
+JOIN riwayat_prestasi_alumni AS rpa
+ON dda.nomor_induk_siswa_sekolah = rpa.nomor_induk_siswa_sekolah
+WHERE lower(rpa.tingkat_prestasi) = 'nasional';
+
+CREATE VIEW lihat_data_diri_alumni_yang_berprestasi_internasional AS
+SELECT dda.nomor_induk_siswa_sekolah AS 'NISK',
+	dda.nama_lengkap AS 'Nama Lengkap',
+    rpa.nama_lomba AS 'Nama Lomba',
+    rpa.predikat_prestasi AS 'Predikat Prestasi',
+    rpa.tanggal_lomba_mulai AS'Tanggal Mulai',
+    rpa.tanggal_lomba_selesai AS 'Tanggal Selesai'
+FROM data_diri_alumni AS dda 
+JOIN riwayat_prestasi_alumni AS rpa
+ON dda.nomor_induk_siswa_sekolah = rpa.nomor_induk_siswa_sekolah
+WHERE lower(rpa.tingkat_prestasi) = 'internasional';
+
+

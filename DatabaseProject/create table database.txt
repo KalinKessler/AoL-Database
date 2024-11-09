@@ -1,0 +1,96 @@
+CREATE TABLE data_diri_alumni(
+	nama_lengkap VARCHAR(100) NOT NULL,
+	alamat VARCHAR(100) DEFAULT 'Jalan' NOT NULL,
+	tempat_lahir VARCHAR(75) NOT NULL, 
+    tanggal_lahir DATE NOT NULL,
+    jenis_kelamin ENUM ('laki-laki', 'perempuan') NOT NULL,
+    jurusan ENUM ('IPA', 'IPS', 'BAHASA') NOT NULL,
+    nomor_induk_siswa_sekolah VARCHAR(10) NOT NULL,
+    nomor_induk_siswa_nasional VARCHAR(10) NOT NULL,
+	tahun_lulus YEAR NOT NULL,
+	PRIMARY KEY(nomor_induk_siswa_sekolah, nomor_induk_siswa_nasional)
+);
+
+CREATE TABLE jenis_pekerjaan(
+	id INT PRIMARY KEY NOT NULL,
+    nama_pekerjaan VARCHAR(20)
+);
+
+
+CREATE TABLE reuni_alumni(
+	id_reuni INT NOT NULL,
+    tanggal_reuni DATE NOT NULL,
+    lokasi_reuni VARCHAR(50) NOT NULL,
+    nomor_induk_siswa_sekolah_alumni_yang_ikut VARCHAR(10) NOT NULL,
+    FOREIGN KEY (nomor_induk_siswa_sekolah_alumni_yang_ikut)
+    	REFERENCES data_diri_alumni (nomor_induk_siswa_sekolah)
+    	ON UPDATE CASCADE
+   		ON DELETE CASCADE
+);
+
+CREATE TABLE riwayat_organisasi_alumni (
+    nomor_induk_siswa_sekolah VARCHAR(10) NOT NULL,
+    id_kegiatan_organisasi INT,
+    peran_di_kegiatan VARCHAR(50),
+    FOREIGN KEY (nomor_induk_siswa_sekolah)
+        REFERENCES data_diri_alumni(nomor_induk_siswa_sekolah)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (id_kegiatan_organisasi)
+        REFERENCES riwayat_kegiatan_organisasi(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    PRIMARY KEY(nomor_induk_siswa_sekolah, id_kegiatan_organisasi)
+);
+
+CREATE TABLE riwayat_prestasi_alumni(
+	nomor_induk_siswa_sekolah VARCHAR(10) NOT NULL,
+    tingkat_prestasi ENUM ('kecamatan', 'kabupaten', 'provinsi', 'nasional', 'internasional') NOT NULL,
+    predikat_prestasi ENUM ('peserta', 'juara harapan', 'juara 3', 'juara 2', 'juara 1') NOT NULL,
+    nama_lomba VARCHAR(30) NOT NULL, 
+    tanggal_lomba_mulai DATE NOT NULL,
+    tanggal_lomba_selesai DATE NOT NULL,
+    FOREIGN KEY (nomor_induk_siswa_sekolah)
+    	REFERENCES data_diri_alumni(nomor_induk_siswa_sekolah)
+    	ON UPDATE CASCADE
+    	ON DELETE CASCADE
+);
+
+CREATE TABLE pekerjaan_alumni(
+    nomor_induk_siswa_sekolah VARCHAR(10) NOT NULL,
+    nama_pekerjaan VARCHAR(50), 
+    id_jenis_pekerjaan INT NOT NULL,
+    jabatan_pekerjaan VARCHAR(50),
+    tempat_bekerja VARCHAR(100),
+    tanggal_mulai_bekerja DATE NOT NULL,
+    FOREIGN KEY (id_jenis_pekerjaan) 
+        REFERENCES jenis_pekerjaan (id)
+        ON DELETE CASCADE 
+        ON UPDATE CASCADE,
+    FOREIGN KEY (nomor_induk_siswa_sekolah) 
+        REFERENCES data_diri_alumni (nomor_induk_siswa_sekolah) 
+        ON DELETE CASCADE 
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE riwayat_kegiatan_organisasi(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nama_kegiatan VARCHAR(30) NOT NULL,
+    tanggal_mulai_kegiatan DATE NOT NULL,
+    tanggal_berakhir_kegiatan DATE NOT NULL,
+	nama_organisasi VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE sekolah_tinggi_alumni(
+	nomor_induk_siswa_sekolah VARCHAR(10) NOT NULL,
+    jenjang_pendidikan ENUM ('D3', 'D4', 'S1', 'S2', 'S3') NOT NULL,
+    nama_sekolah_tinggi VARCHAR(100) NOT NULL,
+    dalam_atau_luar_negeri ENUM ('dalam negeri', 'luar negeri') NOT NULL,
+    nama_program_studi VARCHAR(50) NOT NULL,
+    tahun_masuk YEAR,
+    tahun_ekspektasi_lulus YEAR,
+    FOREIGN KEY (nomor_induk_siswa_sekolah) 
+    	REFERENCES data_diri_alumni (nomor_induk_siswa_sekolah)
+    	ON UPDATE CASCADE
+    	ON DELETE CASCADE
+);

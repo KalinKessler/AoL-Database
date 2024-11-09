@@ -1,0 +1,37 @@
+DELIMITER //
+	CREATE PROCEDURE lihat_alumni_lulus_di_tahun_xxxx(input_year YEAR)
+    BEGIN
+    	SELECT nama_lengkap AS 'Nama Lengkap',
+        	alamat AS 'Alamat',
+            tempat_lahir AS 'Tempat Lahir',
+            jenis_kelamin AS 'Jenis Kelamin',
+            jurusan AS 'Jurusan',
+            nomor_induk_siswa_sekolah AS 'NISK',
+            nomor_induk_siswa_nasional AS 'NISN',
+            tahun_lulus AS 'Tahun Lulus'
+		FROM data_diri_alumni
+        WHERE tahun_lulus = input_year;
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE lihat_data_diri_alumni_yang_ikut_reuni_di_tahun_xxxx(input_year YEAR)
+    BEGIN
+    	SELECT ra.id_reuni as 'ID Reuni',
+			ra.tanggal_reuni as 'Tanggal Reuni',
+    		ra.lokasi_reuni as 'Lokasi Reuni',
+    		ra.nomor_induk_siswa_sekolah_alumni_yang_ikut as 'NISK yang Ikut',
+    		dda.nama_lengkap as 'Nama Lengkap'
+		FROM reuni_alumni as ra JOIN 
+		data_diri_alumni as dda 
+		ON ra.nomor_induk_siswa_sekolah_alumni_yang_ikut = dda.nomor_induk_siswa_sekolah
+		WHERE ra.tanggal_reuni = input_year;
+	END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE hapus_data_alumni_di_semua_tabel(input_nisk VARCHAR(255))
+BEGIN
+    DELETE FROM data_diri_alumni WHERE nomor_induk_siswa_sekolah = input_nisk;
+END //
+DELIMITER ;
